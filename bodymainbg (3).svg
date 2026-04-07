@@ -1,40 +1,69 @@
 <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
 
   <defs>
-    <!-- паттерн (сеточка + кресты) -->
-    <pattern id="pattern" width="60" height="60" patternUnits="userSpaceOnUse">
-      <rect width="60" height="60" fill="#0e0e10"/>
+    <!-- основной паттерн (сетка + блоки) -->
+    <pattern id="gridPattern" width="80" height="80" patternUnits="userSpaceOnUse">
       
-      <!-- линии -->
-      <path d="M0 30 H60 M30 0 V60"
+      <!-- фон ячейки -->
+      <rect width="80" height="80" fill="#0c0c0f"/>
+
+      <!-- тонкая сетка -->
+      <path d="M0 0 H80 M0 0 V80"
             stroke="#ffffff"
-            stroke-opacity="0.05"
+            stroke-opacity="0.04"
             stroke-width="1"/>
 
-      <!-- крест -->
-      <path d="M25 25 L35 35 M35 25 L25 35"
+      <!-- внутренние линии -->
+      <path d="M0 40 H80 M40 0 V80"
             stroke="#ffffff"
-            stroke-opacity="0.08"
-            stroke-width="1.5"/>
+            stroke-opacity="0.025"
+            stroke-width="1"/>
+
+      <!-- маленькие квадраты -->
+      <rect x="10" y="10" width="6" height="6"
+            fill="#ffffff"
+            fill-opacity="0.06"/>
+
+      <rect x="64" y="20" width="4" height="4"
+            fill="#ffffff"
+            fill-opacity="0.05"/>
+
+      <rect x="30" y="55" width="5" height="5"
+            fill="#ffffff"
+            fill-opacity="0.04"/>
+
+      <!-- L-образные углы -->
+      <path d="M5 20 V5 H20"
+            stroke="#ffffff"
+            stroke-opacity="0.06"
+            stroke-width="1.2"
+            fill="none"/>
+
+      <path d="M75 60 V75 H60"
+            stroke="#ffffff"
+            stroke-opacity="0.05"
+            stroke-width="1.2"
+            fill="none"/>
+
     </pattern>
 
     <!-- лёгкий шум -->
     <filter id="noise">
-      <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="2" stitchTiles="stitch"/>
+      <feTurbulence type="fractalNoise" baseFrequency="0.7" numOctaves="2"/>
       <feColorMatrix type="saturate" values="0"/>
       <feComponentTransfer>
-        <feFuncA type="table" tableValues="0 0.05"/>
+        <feFuncA type="table" tableValues="0 0.035"/>
       </feComponentTransfer>
     </filter>
   </defs>
 
   <!-- фон -->
-  <rect width="100%" height="100%" fill="#0e0e10"/>
+  <rect width="100%" height="100%" fill="#0c0c0f"/>
 
-  <!-- узор -->
-  <rect width="100%" height="100%" fill="url(#pattern)"/>
+  <!-- паттерн -->
+  <rect width="100%" height="100%" fill="url(#gridPattern)"/>
 
-  <!-- шум поверх -->
+  <!-- шум -->
   <rect width="100%" height="100%" filter="url(#noise)"/>
 
 </svg>
